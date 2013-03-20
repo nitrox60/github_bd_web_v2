@@ -127,11 +127,8 @@
 			}
 		}
 		public function setMdp($mdp){ 
-			if(is_string($mdp)){ $this->_mdp=md5($mdp);}
-			else{
-				trigger_error("le mdp n'est pas une string",E_USER_WARNING);
-				$this->_addable=false;
-			}
+			if(strlen($mdp)!=32)$this->_mdp=md5($mdp);
+			else $this->_mdp=$mdp;
 		}
 		
 		public function setValidate($val)

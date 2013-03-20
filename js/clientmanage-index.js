@@ -1,15 +1,22 @@
 ﻿$(function(){
-	var fadeInTime=2000 //Temps d'apparation des formulaire en ms.
+	var fadeInTime=500 //Temps d'apparation des formulaire en ms.
 	
 	// --- Changement dynamique du mail --- //
 	$("#change_mail").click(function(){
 		var mail=$("#email").html();
+		$(this).css("box-shadow","2px 2px 2px white");
+		$("#change_adr").css("box-shadow","none");
+		$("#change_mdp").css("box-shadow","none");
 		$("#scrollbox").html('').hide();
 		$("#scrollbox").html('<form id="scrollbox_f" enctype="text/plain" action="#mail"><span style="margin-top:10%"><label for"newmail">Mail</label><input name="newmail"  id="newmail" type="text" value="'+mail+'"/><label for="sub">&nbsp</label><input name="sub" id="sub" type="submit" value="Valider"/></span></form>').fadeIn(fadeInTime);
 	});
 
 	// --- Changement dynamique des coordonnés --- //
 	$("#change_adr").click(function(){
+		$(this).css("box-shadow","2px 2px 2px white");
+		$("#change_mail").css("box-shadow","none");
+		$("#change_mdp").css("box-shadow","none");
+		
 		var rue=$("#rue").html();
 		var ville=$("#ville").html();
 		var cp=$("#cp").html();
@@ -19,6 +26,9 @@
 	
 	// --- Changement dynamique du mdp --- //
 	$("#change_mdp").click(function(){
+		$(this).css("box-shadow","2px 2px 2px white");
+		$("#change_adr").css("box-shadow","none");
+		$("#change_mail").css("box-shadow","none");
 		$("#scrollbox").html('').hide();
 		$("#scrollbox").html('<form id="scrollbox_f" enctype="text/plain" action="#mdp"><span><label for"oldmdp">Mot de passe actuel</label><input name="oldmdp" type="password" id="oldmdp" /><label for"newmdp">Nouveau mot de passe</label><input name="newmdp"  type="password" id="newmdp"/><label for"newmdpconf">Retapez le nouveau mot de passe</label><input name="newmdpconf" type="password"  id="newmdpconf"/><label for="sub">&nbsp</label><input name="sub" id="sub" type="submit" value="Valider"/></span></form>').fadeIn(fadeInTime);
 	});
@@ -37,6 +47,7 @@
 		
 		if(action=="mail")
 		{
+			$("#sub").attr("value","Chargement...").css("color","grey");
 			var newmail=$("#newmail").val();
 			var oldmail=$("#email").html();
 			$.ajax({type:'GET',
@@ -68,6 +79,8 @@
 							$("#err_mail").html("Format invalide.")
 							
 						}
+													$("#sub").attr("value","Valider").css("color","black");
+
 					}
 			
 			});

@@ -77,7 +77,7 @@
 		  
 		  }
 		  
-		  public function chercherParMail($mail)
+		  public function chercherParMail($mail)//renvoie true si le mail existe.
 		  {
 			$req=$this->_db->prepare("SELECT * FROM client WHERE mail=:mail");
 			$req->execute (array(":mail"=>$mail));
