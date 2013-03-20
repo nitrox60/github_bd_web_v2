@@ -1,0 +1,65 @@
+@keyframes nomAnim{
+    from { background-color:black; }
+    35%  { background-color:green; }
+    to   { background-color:white; }
+}
+
+@-webkit-keyframes nomAnim{ from { background-color:black; }
+    35%  { background-color:green; }
+    to   { background-color:white; } } 
+   @-moz-keyframes nomAnim{ from { background-color:blue; }
+    35%  { background-color:green; }
+    to   { background-color:red; } } 
+    @-ms-keyframes nomAnim{ from { background-color:blue; }
+    35%  { background-color:green; }
+    to   { background-color:red; } } 
+     @-o-keyframes nomAnim{ from { background-color:blue; }
+    35%  { background-color:green; }
+    to   { background-color:red; }} 
+           
+
+div{
+    -webkit-animation: nomAnim 5s linear 2s;
+       -moz-animation: nomAnim 5s linear 2s;
+        -ms-animation: nomAnim 5s linear 2s;
+         -o-animation: nomAnim 5s linear 2s;
+            animation: nomAnim 5s linear 2s;
+			/*-webkit-animation-iteration-count :  infinite;
+			animation-iteration-count:infinite;*/
+
+}
+
+input:not(.action)
+{
+width:10%;
+
+float:left;
+}
+
+
+label
+{
+float:left;
+width:8%;
+margin-right:1%;
+margin-left:1%;
+
+clear:left;
+}
+
+input#action
+{
+	float:left;
+	clear:left;
+margin-top: 2%;
+margin-right:1%;
+
+}
+
+input#action2
+{
+	float:left;
+	margin-top:2%;
+
+	
+}

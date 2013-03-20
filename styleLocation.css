@@ -1,0 +1,30 @@
+#log
+{
+	border: 2px solid black;
+	border-radius: 6px 6px 6px;
+	width: 35%;
+	float:right;
+}
+
+div>input
+{
+clear: both;
+clear: both;
+
+margin-left: 5px;
+}
+
+div>label
+{
+float:left;
+clear:left;
+text-align:center;
+}
+
+b>a
+{
+	text-decoration:none;
+	border: 1px solid black;
+	color: yellow;
+	background-color:black;
+}

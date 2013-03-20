@@ -1,0 +1,118 @@
+﻿table
+{
+border:1px solid black;
+border-collapse: collapse;
+text-align:center;
+}
+th, td
+{
+	border: 1px solid black;
+}
+
+a
+{
+	
+	text-decoration:none;
+	
+}
+
+.button_add
+{
+	border:2px solid black;
+	border-radius:3px 3px 3px;
+	background-color:rgba(11,232,0,0.8);
+	width:8%;
+	text-align:center;
+	padding:2px;
+	margin-left:10px;
+	margin-bottom:10px;
+	color:black;
+}
+
+.button_add:hover
+{
+	box-shadow: 2px 2px 2px black;
+	border-radius: 10px 10px 10px;
+	text-shadow:1px 1px 1px white,
+				2px 2px 2px white,
+				1px 1px 1px white;
+	background: -webkit-linear-gradient(rgba(11,232,0,0.8), rgba(0,84,2,1));
+   background:    -moz-linear-gradient(rgba(11,232,0,0.8), rgba(0,84,2,1));
+   background:     -ms-linear-gradient(rgba(11,232,0,0.8), rgba(0,84,2,1));
+   background:      -o-linear-gradient(rgba(11,232,0,0.8), rgba(0,84,2,1));
+   background: linear-gradient(rgba(11,232,0,0.8), rgba(0,84,2,1));
+   
+   width:10%;
+   -webkit-transition: border-radius 0.5s,background 0.5s, width 0.2s ;
+	-moz-transition: border-radius 0.5s,background 0.5s, width 0.2s ;	
+	-ms-transition: border-radius 0.5s,background 0.5s, width 0.2s ;
+	-o-transition: border-radius 0.5s,background 0.5s, width 0.2s ;	
+	
+	transition: border-radius 0.5s,background 0.5s, width 0.2s ;
+}
+
+h2
+{
+	margin-left:33%;
+}
+
+th, td
+{
+	padding:10px;
+}
+
+
+
+.car
+{
+	display:none;
+}
+
+.ajax
+{
+	display:none;
+}
+
+#mq
+{
+
+	margin-left:30%;
+	border: 3px solid black;
+	width: 35%;
+	text-align:center;
+	border-radius:8px 8px 8px;
+	background: linear-gradient(#04BEED, #0383A3);
+	background: -webkit-linear-gradient(#04BEED, #0383A3);
+	background: -ms-linear-gradient(#04BEED, #0383A3);
+	background: -moz-linear-gradient(#04BEED, #0383A3);
+	background: -o-linear-gradient(#04BEED, #0383A3);
+	font-size:30px;
+	font-weight: bold;
+
+}
+
+.sup_car
+{
+	width:20%;
+	text-align:center;
+	text-decoration: none;
+	color: black;
+	border : 1 px solid black;
+	border-radius: 6px 6px 6px ;
+	padding: 2px;
+	background: linear-gradient(#FF0004, #B20000);
+	background: -webkit-linear-gradient(#FF0004, #B20000);
+	background: -ms-linear-gradient(#FF0004, #B20000);
+	background: -moz-linear-gradient(#FF0004, #B20000);
+	background: -o-linear-gradient(#FF0004, #B20000);
+}
+
+.upd
+{
+	cursor:pointer;
+}
+a
+{
+	text-decoration:none;
+	color:black;
+}
