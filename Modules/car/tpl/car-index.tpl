@@ -111,17 +111,87 @@
 		margin-left:17%;
 		margin-bottom:-20px;
 	}
+	
+	#gauche
+	{
+		-webkit-transform: rotate(180deg);
+		float:left;
+		margin-left:3%;
+	}
+	
+	#droite
+	{
+		
+		float:right;
+		margin-right:3%;
+	}
+	img.fleche
+	{
+		width:120px;
+		height:120px;
+		margin-top:15%;
+		cursor:pointer;
+	}
+	
+	
+	
+	.slideshow { 
+	   margin-left:33%;
+	   width: 500px;  
+	   height: 400px; 
+		margin-top:10%;
+	   overflow: hidden;  
+	   border: 3px solid #F2F2F2;  
+	   margin-bottom:5%;
+	}  
+	
+	.slideshow ul {  
+		/* 4 images donc 4 x 100% */  
+	   width: 400%;  
+	   height: 200px;  
+	   padding:0; margin:0;  
+	   list-style: none;  
+	}  
+	
+	.slideshow li {  
+   float: left;  
+}
 </style>
 
 <div id="sel"></div>
 <div style="clear:both;"></div>
 <div id="min" tag="tagok">
-	<table class=ok><tr>
+	<table class="ok"><tr>
 	{foreach $photo as $p}
-		<td><img id={$p->getIdImage()} class=image src=./images/{$p->getIdImage()}.jpg /></td>
+		<td><img id="{$p->getIdImage()}" class="image" src="./images/{$p->getIdImage()}.jpg" /></td>
 	{/foreach}
 	</tr></table></div>
-<div id="photo"></div>
+<div id="photobox">
+
+	<img src="./images/fleche_droite.png" class='fleche' id="gauche"/>
+	<img src="./images/fleche_droite.png"  class='fleche' id="droite"/>
+	
+	<div id="photo">
+		<div class="slideshow">  
+			<ul>  
+			{foreach $photo as $p}
+				<li>
+				<img src="./images/{$p->getIdImage()}.jpg" alt="" width="500" height="400" />
+				</li>
+			{/foreach}
+			<!--
+				<li>
+				<img src="./images/brice.png" alt="" width="600" height="600" />
+				</li>
+			-->
+			</ul>  
+		</div> 
+	</div>
+	
+	
+	
+	
+</div>
 
 
 <div id="comm">
@@ -146,10 +216,68 @@
 	$(function(){
 		$('#addcom textarea').css("max-width","800px").css("max-height","200px").css("min-width","500").css("min-height","100");
 	
+		$("img.fleche").click(function(){
+			
+			
+			if($(this).attr('id')=="droite")
+			{
+				$(".slideshow ul").animate({
+				 marginLeft:-600
+				 },100,function(){  
+					$(this).css({
+					marginLeft:0
+					}).find("li:last").after($(this).find("li:first"));  
+				 }) 
+			}
+			else if($(this).attr('id')=="gauche")
+			{
+				
+				$(".slideshow ul").animate({
+				 marginRight:-600
+				 },100,function(){  
+					$(this).css({
+					marginRight:0
+					}).find("li:first").before($(this).find("li:last"));  
+				 }) 
+			}
+			 
+		});
+		//faire trigger et passez les photo tant qu'on est pas sur la bonne
+		$('img.image').live('click', function(){
+		
+			var source=$(this).attr('src');
+			var image="";
+			var imge=$('li>img').each(function(){
+			
+				if($(this).attr('src')==source)
+					image=$(this);
+			});
+			
+		
+		//	alert($(image).attr('src'));
+		
+		/*	
+			$(".slideshow ul").animate({
+			 marginLeft:-600
+			 },100,function(){  
+				$(this).css({
+				marginLeft:0
+				}).find("li:last").after($(this).find("li:first"));  
+			 }) 
+			 
+			 */
+			 
+		});
+		
+	
+	/*
 		$('img').live('click', function(){
 			
-			if($(this).attr('id')!="big")
+			if($(this).attr("class")=="image")
 			{
+			
+			$("img.fleche").show();
+			
 			var image='';
 				$var=$(this).attr('src');
 				image='<img id="big" src='+$var+' />'
@@ -166,6 +294,7 @@
 			
 			}
         });
+		*/
 		
 		$('#notation div:nth-child(1)').hover(function(){
 		

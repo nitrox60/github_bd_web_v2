@@ -58,19 +58,40 @@ class Login extends Module{
 	
 	public function action_coajax()
 	{
+			
 		$res=array();
 		$res['bool']=false;
-		$cm= new ClientManager(DB::get_instance());
-		$a=$cm->connexion($this->req->log,$this->req->mdp);
-		if($a){
-			
-			$this->tpl->assign('idClient',$a->getIdClient());
-			$this->tpl->assign('login',$a->getMail());
-			$this->tpl->assign('nom',$a->getNom());
-			
-			$this->session->ouvrir($a);
-			$res['bool']=true;
-			$res['who']=$a->getMail();
+		if(($this->req->log) && ($this->req->mdp))
+		{
+			$cm= new ClientManager(DB::get_instance());
+			if($this->req->log=="admin")
+			{
+				$am=new AdminManager(DB::get_instance());
+				$b=$am->connexion($this->req->mdp);
+				if($b)
+				{
+					$this->tpl->assign('login',"admin");
+					$bc=new Client($b);
+					$bc->setMail("admin");
+					$this->session->ouvrir($bc);
+					$res['bool']=true;
+					$res['who']="admin";
+				}
+			}
+			else
+			{
+				$a=$cm->connexion($this->req->log,$this->req->mdp);
+				if($a){
+					
+					$this->tpl->assign('idClient',$a->getIdClient());
+					$this->tpl->assign('login',$a->getMail());
+					$this->tpl->assign('nom',$a->getNom());
+					
+					$this->session->ouvrir($a);
+					$res['bool']=true;
+					$res['who']=$a->getMail();
+				}
+			}
 		}
 		echo json_encode($res);
 		exit;
@@ -126,7 +147,14 @@ class Login extends Module{
 				$adm=$am->connexion($this->req->mdp);
 				if($adm)
 				{
-					$this->session->ouvrir('admin');
+					
+						
+				
+					$this->tpl->assign('login',"admin");
+					$bc=new Client($adm);
+					$bc->setMail("admin");
+					$this->session->ouvrir($bc);
+					
 					$this->site->ajouter_message("Bienvenue Admin");
 					unset($this->session->formlogadm);
 					Site::redirect('admSpace');

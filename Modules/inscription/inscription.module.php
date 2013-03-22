@@ -90,7 +90,7 @@
 			if(!preg_match(self::STREET_REG,$this->req->rue))	$errors[]="Le format du champs rue est: Numéro de rue(nombres) nom de la rue(caractères)";
 			
 						// --- Champs ville --- //
-			if(strlen($this->req->ville)>=self.CITY_LENGTH) $errors[]="La taille de la ville ne doit pas exceder ".self.CITY_LENGTH." caractères";
+			if(strlen($this->req->ville)>=self::CITY_LENGTH) $errors[]="La taille de la ville ne doit pas exceder ".self::CITY_LENGTH." caractères";
 			
 						// --- Champs Code postal --- //
 			if( (!preg_match(self::CP_REG1,$this->req->cp)) OR (preg_match(self::CP_REG2,$this->req->cp)))	$errors[]="Format du code postal incorrect. Contien 5 chiffres de 01000 à 99999";

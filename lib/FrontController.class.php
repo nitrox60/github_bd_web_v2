@@ -47,7 +47,7 @@ Class FrontController{
 		if($mod=="adm")
 		{
 			if($this->session->ouverte()){
-				if($this->session->user=='admin')$m=new $module();
+				if($this->session->user->getMail()=='admin')$m=new $module();
 				else {$this->site->ajouter_message("pas admin! mais {$this->session->user->getMail()}"); Site::redirect('index'); exit;}
 			}else {$this->site->ajouter_message("Vous n'êtes pas connecté"); Site::redirect('login','logadmin'); exit;}
 		}

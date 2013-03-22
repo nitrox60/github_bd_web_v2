@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.1, created on 2013-03-13 15:35:54
+<?php /* Smarty version Smarty-3.1.1, created on 2013-03-21 18:06:26
          compiled from "modules\car\tpl\car-index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2440751409cda726d78-89183219%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9242195ebc3a579d25cde1efdd6d656a343453e1' => 
     array (
       0 => 'modules\\car\\tpl\\car-index.tpl',
-      1 => 1360259364,
+      1 => 1363889184,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.1',
+  'unifunc' => 'content_51409cdaa5d82',
   'variables' => 
   array (
     'photo' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f_com' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.1',
-  'unifunc' => 'content_51409cdaa5d82',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_51409cdaa5d82')) {function content_51409cdaa5d82($_smarty_tpl) {?>﻿
 <style>
@@ -140,23 +140,98 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		margin-left:17%;
 		margin-bottom:-20px;
 	}
+	
+	#gauche
+	{
+		-webkit-transform: rotate(180deg);
+		float:left;
+		margin-left:3%;
+	}
+	
+	#droite
+	{
+		
+		float:right;
+		margin-right:3%;
+	}
+	img.fleche
+	{
+		width:120px;
+		height:120px;
+		margin-top:15%;
+		cursor:pointer;
+	}
+	
+	
+	
+	.slideshow { 
+	   margin-left:33%;
+	   width: 500px;  
+	   height: 400px; 
+		margin-top:10%;
+	   overflow: hidden;  
+	   border: 3px solid #F2F2F2;  
+	   margin-bottom:5%;
+	}  
+	
+	.slideshow ul {  
+		/* 4 images donc 4 x 100% */  
+	   width: 400%;  
+	   height: 200px;  
+	   padding:0; margin:0;  
+	   list-style: none;  
+	}  
+	
+	.slideshow li {  
+   float: left;  
+}
 </style>
 
 <div id="sel"></div>
 <div style="clear:both;"></div>
 <div id="min" tag="tagok">
-	<table class=ok><tr>
+	<table class="ok"><tr>
 	<?php  $_smarty_tpl->tpl_vars['p'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['p']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['photo']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['p']->key => $_smarty_tpl->tpl_vars['p']->value){
 $_smarty_tpl->tpl_vars['p']->_loop = true;
 ?>
-		<td><img id=<?php echo $_smarty_tpl->tpl_vars['p']->value->getIdImage();?>
- class=image src=./images/<?php echo $_smarty_tpl->tpl_vars['p']->value->getIdImage();?>
-.jpg /></td>
+		<td><img id="<?php echo $_smarty_tpl->tpl_vars['p']->value->getIdImage();?>
+" class="image" src="./images/<?php echo $_smarty_tpl->tpl_vars['p']->value->getIdImage();?>
+.jpg" /></td>
 	<?php } ?>
 	</tr></table></div>
-<div id="photo"></div>
+<div id="photobox">
+
+	<img src="./images/fleche_droite.png" class='fleche' id="gauche"/>
+	<img src="./images/fleche_droite.png"  class='fleche' id="droite"/>
+	
+	<div id="photo">
+		<div class="slideshow">  
+			<ul>  
+			<?php  $_smarty_tpl->tpl_vars['p'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['p']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['photo']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['p']->key => $_smarty_tpl->tpl_vars['p']->value){
+$_smarty_tpl->tpl_vars['p']->_loop = true;
+?>
+				<li>
+				<img src="./images/<?php echo $_smarty_tpl->tpl_vars['p']->value->getIdImage();?>
+.jpg" alt="" width="500" height="400" />
+				</li>
+			<?php } ?>
+			<!--
+				<li>
+				<img src="./images/brice.png" alt="" width="600" height="600" />
+				</li>
+			-->
+			</ul>  
+		</div> 
+	</div>
+	
+	
+	
+	
+</div>
 
 
 <div id="comm">
@@ -190,10 +265,68 @@ Note <?php echo $_smarty_tpl->tpl_vars['c']->value->getNote();?>
 	$(function(){
 		$('#addcom textarea').css("max-width","800px").css("max-height","200px").css("min-width","500").css("min-height","100");
 	
+		$("img.fleche").click(function(){
+			
+			
+			if($(this).attr('id')=="droite")
+			{
+				$(".slideshow ul").animate({
+				 marginLeft:-600
+				 },100,function(){  
+					$(this).css({
+					marginLeft:0
+					}).find("li:last").after($(this).find("li:first"));  
+				 }) 
+			}
+			else if($(this).attr('id')=="gauche")
+			{
+				
+				$(".slideshow ul").animate({
+				 marginRight:-600
+				 },100,function(){  
+					$(this).css({
+					marginRight:0
+					}).find("li:first").before($(this).find("li:last"));  
+				 }) 
+			}
+			 
+		});
+		
+		$('img.image').live('click', function(){
+		
+			var source=$(this).attr('src');
+			var image="";
+			var imge=$('li>img').each(function(){
+			
+				if($(this).attr('src')==source)
+					image=$(this);
+			});
+			
+		
+		//	alert($(image).attr('src'));
+		
+		/*	
+			$(".slideshow ul").animate({
+			 marginLeft:-600
+			 },100,function(){  
+				$(this).css({
+				marginLeft:0
+				}).find("li:last").after($(this).find("li:first"));  
+			 }) 
+			 
+			 */
+			 
+		});
+		
+	
+	/*
 		$('img').live('click', function(){
 			
-			if($(this).attr('id')!="big")
+			if($(this).attr("class")=="image")
 			{
+			
+			$("img.fleche").show();
+			
 			var image='';
 				$var=$(this).attr('src');
 				image='<img id="big" src='+$var+' />'
@@ -210,6 +343,7 @@ Note <?php echo $_smarty_tpl->tpl_vars['c']->value->getNote();?>
 			
 			}
         });
+		*/
 		
 		$('#notation div:nth-child(1)').hover(function(){
 		

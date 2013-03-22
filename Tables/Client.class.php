@@ -120,11 +120,8 @@
 		
 		public function setMail($mail){
 		
-			if(filter_var($mail, FILTER_VALIDATE_EMAIL)){ $this->_mail=$mail;}
-			else{
-				trigger_error("mail non valide",E_USER_WARNING);
-				$this->_addable=false;
-			}
+			$this->_mail=$mail;
+			
 		}
 		public function setMdp($mdp){ 
 			if(strlen($mdp)!=32)$this->_mdp=md5($mdp);

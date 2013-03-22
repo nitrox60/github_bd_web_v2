@@ -1,0 +1,62 @@
+<style>
+.slideshow { 
+   margin-left:26%;
+   width: 600px;  
+   height: 600px;  
+   overflow: hidden;  
+   border: 3px solid #F2F2F2;  
+}  
+.slideshow ul {  
+    /* 4 images donc 4 x 100% */  
+   width: 400%;  
+   height: 200px;  
+   padding:0; margin:0;  
+   list-style: none;  
+}  
+.slideshow li {  
+   float: left;  
+}
+
+</style>
+
+
+
+
+<div class="slideshow">  
+    <ul>  
+        <li>
+		<img src="./images/jordan.png" alt="" width="600" height="600" />
+		</li>
+		<li>
+		<img src="./images/brice.png" alt="" width="600" height="600" />
+		</li>
+		 <li>
+		<img src="./images/julienjeune.png" alt="" width="600" height="600" />
+		</li>
+		<li>
+		<img src="./images/benoit.png" alt="" width="600" height="600" />
+		</li>
+		<li>
+		<img src="./images/joseph.png" alt="" width="600" height="600" />
+		</li>
+		<li>
+		<img src="./images/florian.png" alt="" width="600" height="600" />
+		</li>
+    </ul>  
+</div> 
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>  
+   
+<script type="text/javascript">  
+   $(function(){  
+      setInterval(function(){  
+         $(".slideshow ul").animate({
+		 marginLeft:-600
+		 },800,function(){  
+            $(this).css({
+			marginLeft:0
+			}).find("li:last").after($(this).find("li:first"));  
+         })  
+      }, 2500);  
+   });  
+</script> 

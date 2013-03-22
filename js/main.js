@@ -17,9 +17,15 @@
 		$("#menu>a[href=?module=admSpace]").hide();
 		if(who!=undefined)$("#menu>a.nodisp").show();
 	}
+	else
+	{
+		$("#menu>a[href=?module=admSpace]").show();
+		if(who!=undefined)$("#menu>a.nodisp").hide();
+	}
+	
 	$(document).delegate('input.co_pop[type=submit]','click',function(){
 			var MINLENGTH_NDC=4;
-			var MINLENGTH_MDP=8;
+			var MINLENGTH_MDP=5;
 			if( ( $("#ndc_pop").val().length >= MINLENGTH_NDC) && ( $("#mdp_pop").val().length >= MINLENGTH_MDP))
 				$.ajax({	type: 'GET',
 					url: '?module=login&action=coajax&log='+$("#ndc_pop").val()+'&mdp='+$("#mdp_pop").val(),
@@ -28,7 +34,13 @@
 						if(data['bool']==true)
 						{
 							$("#ifLog").html("Connecté : "+data['who']+"<a href='?module=login&action=deconnect'>Logout</a>");
+							if(data['who']!="admin")
 							$("#menu>a.nodisp").show();
+							else
+							{
+								$("#menu>a.nodisp").hide();
+								$("#menu>a[href=?module=admSpace]").show();
+							}
 							$('a.close, #fade').trigger('click');
 						}
 						else if(data['bool']==false) $("#error_pop").html("Email ou Mot de passe incorrecte!");
